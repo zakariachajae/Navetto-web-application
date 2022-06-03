@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Navetto - Votre partenaire de navette</title>
+
+    
+
+    <link href="~/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/fonts/ionicons.min.css" rel="stylesheet" />
+    <link href="~/assets/css/Login-Form-Clean.css" rel="stylesheet" />
+    <link href="~/assets/css/styles.css" rel="stylesheet" />
+
+    <link href="~/assets1/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets1/css/Navigation-Clean.css" rel="stylesheet" />
+    <link href="~/assets1/css/Navigation-with-Button.css" rel="stylesheet" />
+    <link href="~/assets1/css/styles.css" rel="stylesheet" />
+
+    <link href="~/assets2/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets2/css/Registration-Form-with-Photo.css" rel="stylesheet" />
+    <link href="~/assets2/css/styles.css" rel="stylesheet" />
+
+    <link href="~/assets3/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets3/css/Footer-Dark.css" rel="stylesheet" />
+    <link href="~/assets3/css/styles.css" rel="stylesheet" />
+    <link href="~/assets3/fonts/ionicons.min.css" rel="stylesheet" />
+    <meta charset="utf-8">
+</head>
+<body>
+    <div></div>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color: rgb(50,55,58);color: rgb(247,244,244);">
+            <div class="container">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="color: rgb(254,247,247);">NAVETTO</a>
+                <div class="collapse navbar-collapse"
+                     id="navcol-1" style="color: rgb(242,242,242);">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("Index", "Home")" style="color: rgb(254,247,247);">Offres</a></li>
+                        @if (Session["mode"] == "user")
+                        {
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("MesDemandes", "Demande")" style="color: rgb(247,247,247);">Faire une demande</a></li>
+                        }
+                        @if (Session["mode"] == "admin")
+                        {
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="@Url.Action("MesDemandes", "Demande")" style="color: rgb(247,247,247);">Boite de demandes</a></li>
+                        }
+
+                    </ul>
+
+                    <span class="navbar-text actions" style="color: rgba(252,248,248,0.5);">
+                        @if (Session["username"] != null)
+                        {
+                            string userActuel = @Session["username"].ToString();
+                            <a class="login" href="#" style="color: rgb(153,148,24);">Session @userActuel</a>
+                        }
+                        @if (Session["mode"] != null)
+                        {
+                            <a class="btn btn-danger " href="@Url.Action("Deconnexion", "Login")">Deconnexion</a>
+                        }
+
+                        @if (Session["mode"] == null)
+                        {
+                            <a class="btn btn-light action-button" role="button" href="@Url.Action("Login", "Login")">Login</a>
+                        }
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 item text">
+                        <h3>NAVETTO&nbsp;</h3>
+                        <p><br>Une société de transport qui a comme objectif de procurer le confort a ces clients. Nous somme toujours a votre disposition.<br><br></p>
+                    </div>
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">NAVETTO © @DateTime.Now.Year - ZAKARIA CHAJAE ET HAMZA MNAM</p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/assets1/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets1/js/jquery.min.js"></script>
+
+    <script src="~/assets2/js/jquery.min.js"></script>
+    <script src="~/assets2/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/assets3/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets3/js/jquery.min.js"></script>
+
+</body>
+</html>

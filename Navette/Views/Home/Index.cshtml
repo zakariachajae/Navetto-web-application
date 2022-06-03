@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>NAVETTO</h1>
+    <p class="lead">TROUVER VOTRE TRAJET NAVETTE AVEC NOUS</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg"> decouvrir plus </a></p>
+</div>
+
+<hr>
+<h2 class="text-center"> LES TRAJETS DISPONIBLES </h2>
+
+<hr>
+@if (Session["mode"] == "admin")
+{
+    <div class="form-group">
+        @Html.ActionLink("Ajouter un offre", "ajout", "Home", new { Class = "btn btn-primary" })
+
+    </div>
+}
+
+<hr>
+
+<div class="container">
+
+    @if (ViewBag.msg != null)
+    {
+
+        <div class="alert alert-danger">
+            @ViewBag.msg
+        </div>
+    }
+    <div class="row text-center">
+        @foreach (var offre in ViewBag.Offres)
+        {
+            <div class="col-md-4 pb-1 pb-md-0">
+
+
+                <div class="card">
+                    <img class="card-img-top" src="~/Images/2.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Offre @offre.Id </h5>
+
+                        <p class="card-text"> <b>Ville depart- arrive</b>: @offre.VilleDepart - @offre.VilleArrive   </p>
+                        <p class="card-text"><b>Periode d'abonnement</b> : @offre.PeriodeAbonnement Jrs</p>
+                        <p class="card-text"><b>Heure depart-arrive </b>: @offre.HDepart.Hour.ToString().PadLeft(2,'0'):@offre.HDepart.Minute.ToString().PadLeft(2, '0') - @offre.HArrive.Hour.ToString().PadLeft(2, '0'):@offre.HArrive.Minute.ToString().PadLeft(2, '0')  </p>
+                        <p class="card-text"><b>Nombre des places disponibles </b> :@offre.NbrVoulu </p>
+                        <p class="card-text"> <b>Description</b> : @offre.Desc </p>
+                        <p class="card-text"> <b>Prix</b> : @offre.Prix MAD </p>
+                        <p class="card-text">
+                            @if (offre.NbrVoulu>0)
+                                    {
+                                        offre.valable = true;
+                                <div class="alert alert-success" role="alert">
+                                    Valable
+                                </div>
+                            }
+                            else if (offre.NbrVoulu ==0)
+                            {
+                                offre.valable = false;
+                                <div class="alert alert-danger" role="alert">
+                                    fermée
+                                </div>
+                            }
+                        </p>
+                        @if (Session["mode"] == "user" && offre.NbrVoulu > 0)
+                        {
+                            @Html.ActionLink("S'abonner", "Paiement", "Home", new { id = offre.Id }, new { Class = "btn btn-primary" })
+                        }
+                        @if (Session["mode"] == "admin")
+                        {
+                            @Html.ActionLink("modifer", "modifer", "Home", new { id = offre.Id }, new { Class = "btn btn-info" });
+                            @Html.ActionLink("supprimer", "supprimer", "Home", new { id = offre.Id }, new { Class = "btn btn-danger" })
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+
+

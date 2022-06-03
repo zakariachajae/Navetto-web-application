@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "supprimer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h2>Voulez vous vraiment supprimer l'Offre @ViewBag.o.Id ?</h2>
+@Html.ActionLink("Non", "Index","Home", new { Class = "btn btn-primary" })
+@Html.ActionLink("Oui", "ConfSupprimer", "Home",new {id= @ViewBag.o.Id }, new { Class = "btn btn-danger" })
+

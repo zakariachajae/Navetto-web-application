@@ -1,0 +1,142 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Demande";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr>
+@if (Session["mode"] == "user")
+{
+    <h2>faire une Demande: </h2>
+    <div>
+        @Html.ActionLink("faire une nouvelle demande", "FaireDemande", "Demande", new { Class = "btn btn-primary" })
+    </div>
+    if (ViewBag.message != null)
+    {
+
+        <div class="alert alert-warning">
+            @ViewBag.message
+        </div>
+    }
+    if (ViewBag.message2 != null)
+    {
+
+        <div class="alert alert-warning">
+            @ViewBag.message2
+        </div>
+    }
+    if (ViewBag.message1 != null)
+    {
+
+        <div class="alert alert-danger">
+            @ViewBag.message1
+        </div>
+    }
+}
+<hr>
+@if (Session["mode"] == "user")
+{
+    <h3>Mes demandes: </h3>
+    if (ViewBag.msg1 != null)
+    {
+
+        <div class="alert alert-danger">
+            @ViewBag.msg1
+        </div>
+    }
+}
+else
+{
+    <h3>Tout les demandes: </h3>
+
+    if (ViewBag.msg2 != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.msg2
+        </div>
+    }
+}
+
+<div class="container">
+
+    <div class="row text-center">
+        @foreach (var demande in ViewBag.demandes)
+        {
+            if (demande.UserId == (int)Session["user_id"])
+            {
+                <div class="col-md-4 pb-1 pb-md-0">
+
+
+
+                    <div class="card">
+                        <img class="card-img-top" src="~/Images/3.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">demande de @demande.NomDemandeur </h5>
+
+                            <p class="card-text">ville depart- arrive : @demande.VilleDepart - @demande.VilleArrive   </p>
+                            <p class="card-text">periode d'abonnement : @demande.PeriodeAbonnement</p>
+                            <p class="card-text">heure depart-arrive: @demande.HeureDepart.Hour:@demande.HeureDepart.Minute - @demande.HeureArrive.Hour:@demande.HeureDepart.Minute  </p>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+            else if (Session["mode"].ToString() == "admin")
+            {
+                <div class="col-md-4 pb-1 pb-md-0">
+
+
+
+                    <div class="card">
+                        <img class="card-img-top" src="~/Images/3.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">demande  @demande.Id </h5>
+
+                            <p class="card-text">ville depart- arrive : @demande.VilleDepart - @demande.VilleArrive   </p>
+                            <p class="card-text">periode d'abonnement : @demande.PeriodeAbonnement</p>
+                            <p class="card-text">heure depart-arrive: @demande.HeureDepart.Hour:@demande.HeureDepart.Minute - @demande.HeureArrive.Hour:@demande.HeureDepart.Minute  </p>
+
+                            @Html.ActionLink("supprimer", "SupprimerDemande", "Demande", new { id = demande.Id }, new { Class = "btn btn-danger" })
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+        }
+    </div>
+
+</div>
+@if (Session["mode"].ToString() == "admin")
+{
+    <hr>
+    <h2>tableau des trajet </h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Ville de Depart</th>
+                <th scope="col">Ville d'arrive</th>
+                <th scope="col">nombre de personnes interssés</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var demande in ViewBag.demandes)
+            {
+                <tr>
+                    <td> @demande.Id</td>
+                    <td> @demande.VilleDepart</td>
+                    <td>@demande.VilleArrive</td>
+                    <td>@demande.nbrPersonneInteresse</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br>
+
+<div class="login-clean">
+    <form method="post">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="illustration"><img src="~/Images/UserLogo.png" alt="Girl in a jacket" width="100" height="100"> </div>
+        <div class="form-group"><input class="form-control" type="text" name="login" placeholder="login"></div>
+        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+        <div class="form-group"><button class="btn btn-info btn-block" type="submit">Log In</button></div>
+        <a class="forgot" href="#"style="text-align:center"> @Html.ActionLink("insciver-vous ici", "SignIn", "Login")</a>
+        @if (!String.IsNullOrEmpty(ViewBag.msg))
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.msg
+            </div>
+        }
+    </form>
+</div>
+
+
+        
+

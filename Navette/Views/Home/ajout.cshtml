@@ -1,0 +1,150 @@
+﻿@model Navette.Models.Offres
+
+@{
+    ViewBag.Title = "ajouter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="container">
+    <hr>
+    <form class="well form-horizontal" action=" " method="post" id="contact_form">
+        <fieldset>
+
+            <hr>
+            <br>
+            <legend><center><h2><b>Ajouter offre</b></h2></center></legend><br>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">periode d'abonnement</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input name="periode" placeholder="periode" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">heure depart</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input name="heure depart" placeholder="heure depart" class="form-control" type="time">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">heure arrive</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input name="heure arrive" placeholder="heure arrive" class="form-control" type="time">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">ville depart</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+
+                        <select name="ville depart" class="form-control selectpicker">
+                            <option value="">la ville</option>
+                            <option>kenitra</option>
+                            <option>sale</option>
+                            <option>rabat</option>
+                            <option>casablanca</option>
+                            <option>tanger</option>
+                            <option>agadir</option>
+                            <option>marrakech</option>
+                            <option>agadir</option>
+                            <option>fes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">ville arrive</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+
+                        <select name="ville arrive" class="form-control selectpicker">
+                            <option value="">la ville</option>
+                            <option>kenitra</option>
+                            <option>sale</option>
+                            <option>rabat</option>
+                            <option>casablanca</option>
+                            <option>tanger</option>
+                            <option>agadir</option>
+                            <option>marrakech</option>
+                            <option>agadir</option>
+                            <option>fes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">description</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+
+                        <input name="description" placeholder="description" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">nombre voulu</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input name="nbr voulu" placeholder="periode" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Prix</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input name="prix" placeholder="prix" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            @if (ViewBag.msg != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.msg
+                </div>
+            }
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <br>
+                    <input type="submit" class="btn btn-warning" name="modifier" value="ajouter" />
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+    </div>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
